@@ -33,7 +33,7 @@
           <p>Enter the heroes drafted already to receive recommended counterpicks.</p>
         </div>
         <br>
-        <form action="{{ url_for('predict')}}" method="post">
+        <form id="hero-form" action="{{ url_for('predict')}}" method="post">
           <input list="heroes" type="text" id="hero-select" name="your1" placeholder="Your Team 1"/>
           <datalist id="heroes">
             <option value="Abaddon"></option>
@@ -173,9 +173,18 @@
           <input list="heroes" type="text" id="hero-select" name="your5" placeholder="Your Team 5"/>
           <input list="heroes" type="text" id="hero-select" name="enemy5" placeholder="Enemy Team 5"/>
           <br><br>
+          <p>Select a role (required):</p>
+          <select name="role" required>
+            <option value="Support">Support</option>
+            <option value="Carry">Carry</option>
+          </select>
+          <br><br>
           <button id="submit-btn" type="submit" class="btn btn-default">Submit</button>
-          <button id="clear-btn" type="button" class="btn btn-default" onclick="document.getElementById('hero-select').value = ''">Clear input field</button>
+          <button id="clear-btn" type="button" class="btn btn-default" onclick="clearInputs()">Clear input field</button>
         </form>
+        <script> function clearInputs() {
+          document.getElementById("hero-form").reset()};
+        </script>
         <br><br>
         {{ prediction_text }}
       </div>
