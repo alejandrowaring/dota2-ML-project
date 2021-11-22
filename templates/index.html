@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Dota 2 Hero Picker</title>
+  </head>
+
+  <body style>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">Hero Picker
+          <a class="navbar-brand">•
+          <a class="navbar-brand" href="about.html">About
+          </a>
+        </div>
+      </div>
+    </nav>
+    <!-- <div class="hero-image"> -->
+      <!-- <div class="hero-text">
+        <h1>Dota 2 Hero Picker</h1>
+      </div> -->
+    <!-- </div> -->
+    <div class="container">
+      <div class="submit-form">
+        <div>
+          <br>
+          <h1>Dota 2 Hero Picker</h1>
+          <br>
+          <p>Enter the heroes drafted already to receive recommended counterpicks.</p>
+        </div>
+        <br>
+        <form action="{{ url_for('predict')}}" method="post">
+          <input list="heroes" type="text" id="hero-select" name="your1" placeholder="Your Team 1"/>
+          <datalist id="heroes">
+            <option value="Abaddon"></option>
+            <option value="Alchemist"></option>
+            <option value="Ancient Apparition"></option>
+            <option value="Anti-Mage"></option>
+            <option value="Arc Warden"></option>
+            <option value="Axe"></option>
+            <option value="Bane"></option>
+            <option value="Batrider"></option>
+            <option value="Beastmaster"></option>
+            <option value="Bloodseeker"></option>
+            <option value="Bounty Hunter"></option>
+            <option value="Brewmaster"></option>
+            <option value="Bristleback"></option>
+            <option value="Broodmother"></option>
+            <option value="Centaur Warrunner"></option>
+            <option value="Chaos Knight"></option>
+            <option value="Chen"></option>
+            <option value="Clinkz"></option>
+            <option value="Clockwerk"></option>
+            <option value="Crystal Maiden"></option>
+            <option value="Dark Seer"></option>
+            <option value="Dark Willow"></option>
+            <option value="Dawnbreaker"></option>
+            <option value="Dazzle"></option>
+            <option value="Death Prophet"></option>
+            <option value="Disruptor"></option>
+            <option value="Doom"></option>
+            <option value="Dragon Knight"></option>
+            <option value="Drow Ranger"></option>
+            <option value="Earth Spirit"></option>
+            <option value="Earthshaker"></option>
+            <option value="Elder Titan"></option>
+            <option value="Ember Spirit"></option>
+            <option value="Enchantress"></option>
+            <option value="Enigma"></option>
+            <option value="Faceless Void"></option>
+            <option value="Grimstroke"></option>
+            <option value="Gyrocopter"></option>
+            <option value="Hoodwink"></option>
+            <option value="Huskar"></option>
+            <option value="Invoker"></option>
+            <option value="Io"></option>
+            <option value="Jakiro"></option>
+            <option value="Juggernaut"></option>
+            <option value="Keeper of the Light"></option>
+            <option value="Kunkka"></option>
+            <option value="Legion Commander"></option>
+            <option value="Leshrac"></option>
+            <option value="Lich"></option>
+            <option value="Lifestealer"></option>
+            <option value="Lima"></option>
+            <option value="Lion"></option>
+            <option value="Lone Druid"></option>
+            <option value="Luna"></option>
+            <option value="Lycan"></option>
+            <option value="Magnus"></option>
+            <option value="Marci"></option>
+            <option value="Mars"></option>
+            <option value="Medusa"></option>
+            <option value="Meepo"></option>
+            <option value="Mirana"></option>
+            <option value="Monkey King"></option>
+            <option value="Morphling"></option>
+            <option value="Naga Siren"></option>
+            <option value="Nature's Prophet"></option>
+            <option value="Necrophos"></option>
+            <option value="Night Stalker"></option>
+            <option value="Nyx Assassin"></option>
+            <option value="Ogre Magi"></option>
+            <option value="Omniknight"></option>
+            <option value="Oracle"></option>
+            <option value="Outworld Destroyer"></option>
+            <option value="Pangolier"></option>
+            <option value="Phantom Assassin"></option>
+            <option value="Phantom Lancer"></option>
+            <option value="Phoenix"></option>
+            <option value="Puck"></option>
+            <option value="Pudge"></option>
+            <option value="Pugna"></option>
+            <option value="Queen of Pain"></option>
+            <option value="Razor"></option>
+            <option value="Riki"></option>
+            <option value="Rubick"></option>
+            <option value="Sand King"></option>
+            <option value="Shadow Demon"></option>
+            <option value="Shadow Fiend"></option>
+            <option value="Shadow Shaman"></option>
+            <option value="Silencer"></option>
+            <option value="Skywrath Mage"></option>
+            <option value="Slardar"></option>
+            <option value="Slark"></option>
+            <option value="Snapfire"></option>
+            <option value="Sniper"></option>
+            <option value="Spectre"></option>
+            <option value="Spirit Breaker"></option>
+            <option value="Storm Spirit"></option>
+            <option value="Sven"></option>
+            <option value="Techies"></option>
+            <option value="Templar Assassin"></option>
+            <option value="Terrorblade"></option>
+            <option value="Tidehunter"></option>
+            <option value="Timbersaw"></option>
+            <option value="Tinker"></option>
+            <option value="Tiny"></option>
+            <option value="Treant Protector"></option>
+            <option value="Troll Warlord"></option>
+            <option value="Tusk"></option>
+            <option value="Underlord"></option>
+            <option value="Undying"></option>
+            <option value="Ursa"></option>
+            <option value="Vengeful Spirit"></option>
+            <option value="Venomancer"></option>
+            <option value="Viper"></option>
+            <option value="Visage"></option>
+            <option value="Void Spirit"></option>
+            <option value="Warlock"></option>
+            <option value="Weaver"></option>
+            <option value="Windranger"></option>
+            <option value="Winter Wyvern"></option>
+            <option value="Witch Doctor"></option>
+            <option value="Wraith King"></option>
+            <option value="Zeus"></option>
+          </datalist>
+          <input list="heroes" type="text" id="hero-select" name="enemy1" placeholder="Enemy Team 1"/>
+          <br><br>
+          <input list="heroes" type="text" id="hero-select" name="your2" placeholder="Your Team 2"/>
+          <input list="heroes" type="text" id="hero-select" name="enemy2" placeholder="Enemy Team 2"/>
+          <br><br>
+          <input list="heroes" type="text" id="hero-select" name="your" placeholder="Your Team 3"/>
+          <input list="heroes" type="text" id="hero-select" name="enemy3" placeholder="Enemy Team 3"/>
+          <br><br>
+          <input list="heroes" type="text" id="hero-select" name="your4" placeholder="Your Team 4"/>
+          <input list="heroes" type="text" id="hero-select" name="enemy4" placeholder="Enemy Team 4"/>
+          <br><br>
+          <input list="heroes" type="text" id="hero-select" name="your5" placeholder="Your Team 5"/>
+          <input list="heroes" type="text" id="hero-select" name="enemy5" placeholder="Enemy Team 5"/>
+          <br><br>
+          <button id="submit-btn" type="submit" class="btn btn-default">Submit</button>
+          <button id="clear-btn" type="button" class="btn btn-default" onclick="document.getElementById('hero-select').value = ''">Clear input field</button>
+        </form>
+        <br><br>
+        {{ prediction_text }}
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+  </body>
+</html>
