@@ -2,6 +2,7 @@ certifi==2021.5.30
 click==8.0.3
 colorama
 dataclasses
+numpy
 Flask
 itsdangerous
 Jinja2
@@ -10,7 +11,6 @@ MarkupSafe
 mkl-fft
 mkl-random
 mkl-service
-numpy
 scikit-learn
 scipy
 six
