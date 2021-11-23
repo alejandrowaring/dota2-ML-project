@@ -19,7 +19,7 @@ def remove_set(a,b):
 
 # Setup Flask
 app = Flask(__name__)
-
+num_heroes = 3
 
 hero_ids = []
 hero_json_file = os.path.join(".","data","heroes.json")
@@ -38,9 +38,8 @@ for i in hero_ids:
 
             
         
-def idize(hero_name):
-    current_search = db.heroes.find({"localized_name":hero_name})
-    return current_search['id']
+# def idize(hero_name):
+#     return current_search['id']
 
 #Encoder for json file
 class MyEncoder(json.JSONEncoder):
@@ -90,7 +89,7 @@ def predict():
     #Get the maximum value of all the keys
     max_value = max(results.values());  {key for key, value in results.items() if value == max_value}
     #In the case that we have more than 3 heroes with the same maximum value, just randomly pick 3 from the available options, This shouldnt happen but it does
-    if len({key for key, value in results.items() if value == max_value}) >= 3:
+    if len({key for key, value in results.items() if value == max_value}) >= num_heroes:
         possible_heroes = []
         for key,value in results.items():
             if value == max_value:
@@ -98,8 +97,8 @@ def predict():
         hero_picks = random.sample(possible_heroes,3)
     #otherwise do the right thing and get the 3 best results from the dictionary and return them.
     else:
-        hero_picks = sorted(results, key=results.get, reverse=True)[:3]
-    return render_template( 'index.html',hero_list=hero_picks)
+        hero_picks = sorted(results, key=results.get, reverse=True)[:num_heroes]
+    return render_template('index.html',hero_list=hero_picks)
 
 
 
