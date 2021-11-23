@@ -10,7 +10,7 @@ joblib
 MarkupSafe
 mkl-fft
 mkl-random
-mkl-service
+#mkl-service
 scikit-learn
 scipy
 six
