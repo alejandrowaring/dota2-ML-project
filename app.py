@@ -34,6 +34,7 @@ def idize(hero_name_list):
 
 # Setup Flask
 app = Flask(__name__)
+print(app)
 num_heroes = 3
 
 hero_ids = []
@@ -118,4 +119,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
