@@ -8,8 +8,8 @@ Jinja2
 joblib
 MarkupSafe
 mkl-fft
-mkl-random==1.1.1
-mkl-service==2.3.0
+mkl-random
+mkl-service
 numpy
 scikit-learn
 scipy
