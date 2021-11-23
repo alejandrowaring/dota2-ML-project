@@ -2,7 +2,7 @@ certifi==2021.5.30
 click==8.0.3
 colorama
 dataclasses
-numpy
+numpy==1.19.2
 Flask
 itsdangerous
 Jinja2
