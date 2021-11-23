@@ -11,7 +11,7 @@ import joblib
 import random
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
-hero_json_file = os.path.join(".","data","heroes.json")
+hero_json_file = os.path.join(".","static","data","heroes.json")
 
 def remove_set(a,b):
     return list(set(a)-set(b))
