@@ -5,24 +5,38 @@ from flask import (
     jsonify,
     request,
     redirect)
-import pymongo
 import json
-from bson.json_util import ObjectId
+#from bson.json_util import ObjectId
 import joblib
 import random
-from sklearn.preprocessing import OneHotEncoder
 import numpy as np
+from sklearn.preprocessing import OneHotEncoder
+hero_json_file = os.path.join(".","data","heroes.json")
 
 def remove_set(a,b):
     return list(set(a)-set(b))
 
+def heroize(hero_id_list):
+    output_hero_list = []
+    with open(hero_json_file) as heroes_file:
+        data = json.load(heroes_file)
+        for i in hero_id_list:
+            output_hero_list.append(next((item for item in data if item["id"] == i), None)['localized_name'])
+    return output_hero_list
+
+def idize(hero_name_list):
+    output_hero_list = []
+    with open(hero_json_file) as heroes_file:
+        data = json.load(heroes_file)
+        for i in hero_name_list:
+            output_hero_list.append(next((item for item in data if item["localized_name"] == i), None)['id'])
+    return output_hero_list
 
 # Setup Flask
 app = Flask(__name__)
 num_heroes = 3
 
 hero_ids = []
-hero_json_file = os.path.join(".","data","heroes.json")
 with open(hero_json_file) as heroes_file:
     data = json.load(heroes_file)
     #get all the possible hero ID's into a list
@@ -42,13 +56,13 @@ for i in hero_ids:
 #     return current_search['id']
 
 #Encoder for json file
-class MyEncoder(json.JSONEncoder):
+# class MyEncoder(json.JSONEncoder):
 
-    def default(self, obj):
-        if isinstance(obj, ObjectId):
-            return str(obj)
-        return super(MyEncoder, self).default(obj)
-app.json_encoder = MyEncoder
+#     def default(self, obj):
+#         if isinstance(obj, ObjectId):
+#             return str(obj)
+#         return super(MyEncoder, self).default(obj)
+# app.json_encoder = MyEncoder
 
 @app.route("/")
 def home():
@@ -57,9 +71,9 @@ def home():
 @app.route("/predict",methods=['POST'])
 def predict():
     #Data Pulled from the forms
-    our_heroes = []
-    their_heroes = []
-    hero_type = ""
+    our_heroes = [1,10,12]
+    their_heroes = [13,16,20]
+    hero_type = "Carry"
     #Load in the model and fit the Encoder
     model = joblib.load('./dota_picks_trained.h5')
     results = {}
@@ -98,7 +112,8 @@ def predict():
     #otherwise do the right thing and get the 3 best results from the dictionary and return them.
     else:
         hero_picks = sorted(results, key=results.get, reverse=True)[:num_heroes]
-    return render_template('index.html',hero_list=hero_picks)
+    output_list = heroize(hero_picks)
+    return render_template('index.html',hero_list=output_list)
 
 
 

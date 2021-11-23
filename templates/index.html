@@ -186,7 +186,11 @@
           document.getElementById("hero-form").reset()};
         </script>
         <br><br>
-        {{ prediction_text }}
+        <ul>
+        {%for i in hero_list%}
+          <li>{{i}}</li>
+        {%endfor%}
+        </ul>
       </div>
     </div>
 
