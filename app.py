@@ -29,7 +29,8 @@ def idize(hero_name_list):
     with open(hero_json_file) as heroes_file:
         data = json.load(heroes_file)
         for i in hero_name_list:
-            output_hero_list.append(next((item for item in data if item["localized_name"] == i), None)['id'])
+            if any(d['localized_name'] == i for d in data):
+                output_hero_list.append(next((item for item in data if item["localized_name"] == i), None)['id'])
     return output_hero_list
 
 # Setup Flask
@@ -72,9 +73,27 @@ def home():
 @app.route("/predict",methods=['POST'])
 def predict():
     #Data Pulled from the forms
-    our_heroes = [1,10,12]
-    their_heroes = [13,16,20]
-    hero_type = "Carry"
+    #Player's team
+    our_form = ["your1","your2","your3","your4","your5"]
+    our_hero_names = []
+    for i in our_form:
+        hero_name = request.form[i]
+        our_hero_names.append(hero_name)
+    our_heroes = idize(our_hero_names)
+    print(our_hero_names)
+
+    #Enemy team
+    their_form = ["enemy1","enemy2","enemy3","enemy4","enemy5"]
+    their_hero_names = []
+    for i in their_form:
+        hero_name = request.form[i]
+        their_hero_names.append(hero_name)
+    their_heroes = idize(their_hero_names)
+    print(their_hero_names)
+
+    #Role select
+    hero_type = request.form["role-select"]
+
     #Load in the model and fit the Encoder
     model = joblib.load('./dota_picks_trained.h5')
     results = {}
